@@ -38,7 +38,7 @@ player := tinyplayer.New(out)
 player.Play(strings.NewReader(sound))
 ```
 
-`Play` takes any `io.Reader` with a WAV file in it. It sets the sample rate from the file and returns when all the audio is queued. Call `Stop` from another goroutine to end playback early. `SetVolume` takes 0 to 256.
+`Play` takes any `io.Reader` with a WAV file in it. It sets the sample rate from the file and returns when all the audio is queued. Call `Stop` from another goroutine to end playback early, or `Pause` to pause and resume it. `Progress` returns the elapsed and total time. `SetVolume` takes 0 to 256.
 
 To embed a sound use a string so it stays in flash:
 
@@ -116,6 +116,8 @@ tinygo flash -tags speaker -target=xiao-rp2350 ./examples/embed
   ```
   tinygo flash -tags fat_noexfat -target=pico ./examples/msc
   ```
+
+[tinypod](https://github.com/hybridgroup/tinypod) is an iPod classic style music player built on tinyplayer. It works with different displays, SD card or flash storage, and buttons.
 
 The `fat_noexfat` tag leaves out exFAT support, which these small volumes do not need.
 
